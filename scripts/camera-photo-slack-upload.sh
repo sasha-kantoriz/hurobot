@@ -1,6 +1,6 @@
 #!/bin/bash
 
-output_directory=/mnt/d-usb/data/local/camera
+output_directory=/camera
 output_file=`TZ=Europe/Kiev date +%Y-%m-%d.%H-%M-%S`.jpeg
 export TZ=Europt/Kiev
 

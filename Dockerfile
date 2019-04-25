@@ -19,6 +19,4 @@ WORKDIR /hubot
 # Install hubot
 RUN su hubot -c 'yo hubot --owner="You" --name="HuBot" --description="HuBot on Docker" --defaults'
 
-CMD pigpiod && bin/hubot -a slack
-
-
+CMD pigpiod && env > /etc/.environment && cron /etc/cron.d/cron-dev && cd /hubot && bin/hubot -a slack
