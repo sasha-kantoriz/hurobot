@@ -1,0 +1,1 @@
+0 * * * * root bash -c 'BASH_ENV=/etc/.environment /scripts/camera-photo-slack-upload.sh >> /var/log/camera-cron.log'
