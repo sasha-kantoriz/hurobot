@@ -21,7 +21,7 @@ module.exports = (robot) ->
   robot.respond /enable (.*)/, (msg) ->
     device = msg.match[1]
     child_process.exec 'crontab -l | sed "/^#.*#{device}*/s/^#//" | crontab -', (error, stdout, stderr) ->
-      msg.send
+      msg.send("enabled #{device} #{stdout} #{stderr}")
 
   robot.respond /disable (.*)/, (res) ->
     device = res.match[1]
