@@ -14,12 +14,16 @@ module.exports = (robot) ->
     child_process.exec 'bash /scripts/camera-photo-slack-upload.sh', (error, stdout, stderr) ->
       msg.send("Here is photo #{stdout}, #{stderr}")
 
-  robot.respond /enable (.*)/. (res) ->
-    device = res.match[1]
+  robot.respond /list crons/, (msg) ->
+    child_process.exec 'crontab -l', (error, stdout, stderr) ->
+      msg.send("Crontab entries:\n#{stdout}\n#{stderr}")
+
+  robot.respond /enable (.*)/, (msg) ->
+    device = msg.match[1]
     child_process.exec 'crontab -l | sed "/^#.*#{device}*/s/^#//" | crontab -', (error, stdout, stderr) ->
       msg.send
 
-  robot.respond /disable (.*)/. (res) ->
+  robot.respond /disable (.*)/, (res) ->
     device = res.match[1]
     child_process.exec 'crontab -l | sed "/^[^#].*#{device}*/s/^/#/" | crontab -', (error, stdout, stderr) ->
-      msg.send("disabled #{device} #{stdout} #{stderr}")
+      res.send("disabled #{device} #{stdout} #{stderr}")
