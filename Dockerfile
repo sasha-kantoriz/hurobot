@@ -3,7 +3,7 @@ FROM balenalib/raspberrypi3-debian-node
 RUN apt update -y &&\
     apt-get install -y gcc cron curl python3 python3-setuptools python3-pip python3-dev pigpio python3-pigpio npm nodejs 
 
-#RUN pip install RPi.GPIO
+RUN pip3 install RPi.GPIO slackclient
 
 ## Hubot
 RUN npm install -g coffee-script yo generator-hubot && \
