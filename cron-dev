@@ -1,5 +1,5 @@
 0 * * * * root bash -c 'BASH_ENV=/etc/.environment /scripts/camera-photo-slack-upload.sh >> /var/log/camera-cron.log'
 
-50 9 * * * root /usr/bin/python3 /scripts/pigpio-controller.py on coolers
-50 20 * * * root /usr/bin/python3 /scripts/pigpio-controller.py off coolers
+50 9 * * * root bash -c 'BASH_ENV=/etc/.environment /usr/bin/python3 /scripts/pigpio-controller.py on coolers'
+50 20 * * * root bash -c 'BASH_ENV=/etc/.environment /usr/bin/python3 /scripts/pigpio-controller.py off coolers'
 
