@@ -21,9 +21,9 @@ module.exports = (robot) ->
   robot.respond /enable (.*)/, (msg) ->
     device = msg.match[1]
     child_process.exec "/scripts/timer-manager.sh enable #{device}", (error, stdout, stderr) ->
-      msg.send("enabled #{device} #{stdout} #{stderr}")
+      msg.send("enabled #{device}\n#{stdout} #{stderr}")
 
   robot.respond /disable (.*)/, (res) ->
     device = res.match[1]
     child_process.exec "/scripts/timer-manager.sh disable #{device}", (error, stdout, stderr) ->
-      res.send("disabled #{device} #{stdout} #{stderr}")
+      res.send("disabled #{device}\n#{stdout} #{stderr}")

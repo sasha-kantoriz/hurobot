@@ -7,7 +7,7 @@ device=$2
 
 case $action in
 	enable)
-		crontab -l | sed "/^[^#].*$device*/s/^/#/" | crontab -
+		crontab -l | sed "/^#.*${device}*/s/^#//" | crontab -
 		;;
 	disable)
 		crontab -l | sed "/^[^#].*${device}*/s/^/#/" | crontab -
