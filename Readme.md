@@ -3,12 +3,12 @@ __Hurobot__
 
 *__About__*
 
-This project is a attempt in struggling for automation of keeping and controlling friendly  climate environment during all the growing  period (lifecycle of plants) inside box, including software and hardware telemetry and telecommand system.
+This project is a attempt in struggling for automation of keeping and controlling friendly  climate environment during all the growing  period (lifecycle of plants) inside box, including software and hardware that serves for telemetry/telecommand system.
+
+
+*__What__*
 
 The main goal is to try to achieve as much as possible autonomous indoor growing decision.
-
-
-*__What? - description, images__*
 
 Includes for now:
 - Sodium-vapor lamp, 250 W
@@ -53,7 +53,12 @@ Implemented bot has the next list of skills:
 - Grab photo
 - Edit switching schedule of attached devices
 
-*__Aims__*
+
+*__TODO__*
+
+* Control main electricity with RPI circuit
+* Add termostat as Raspberry Pi module
+* Switch to using LED lights 
 
 
 *__Resources__*
