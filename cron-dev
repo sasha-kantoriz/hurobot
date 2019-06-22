@@ -3,3 +3,7 @@
 50 9 * * * root bash -c 'BASH_ENV=/etc/.environment /usr/bin/python3 /scripts/pigpio-controller.py on coolers'
 50 20 * * * root bash -c 'BASH_ENV=/etc/.environment /usr/bin/python3 /scripts/pigpio-controller.py off coolers'
 
+40 9 * * * root bash -c '/scripts/music.sh /music'
+0 21 * * * root bash -c 'killall play'
+
+

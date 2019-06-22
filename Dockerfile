@@ -9,6 +9,9 @@ RUN pip3 install RPi.GPIO slackclient
 RUN npm install -g coffee-script yo generator-hubot && \
     npm install hubot-standup-alarm hubot-slack --save && npm install
 
+## Sox audio player
+RUN apt install -y sox pavucontrol libsox-fmt-all psmisc
+
 # add hubot user
 RUN useradd -d /hubot -m -s /bin/bash -U hubot
 

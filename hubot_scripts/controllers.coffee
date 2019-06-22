@@ -27,3 +27,15 @@ module.exports = (robot) ->
     device = res.match[1]
     child_process.exec "/scripts/timer-manager.sh disable #{device}", (error, stdout, stderr) ->
       res.send("disabled #{device}\n#{stdout} #{stderr}")
+
+  robot.respond /play (.*)/, (msg) ->
+    path = if msg.match[1] then msg.match[1] else '/music'
+    #path = msg.match[1]
+    child_process.exec "(play -q /music/*.mp3", (error, stdout, stderr) ->
+      msg.send("started music player at path #{path}\n#{stdout}\n#{stderr}")
+
+  robot.respond /mute/, (msg) ->
+    child_process.exec "killall play", (error, stdout, stderr) ->
+      msg.send("mute music player\n#{stdout}\n#{stderr}")
+
+

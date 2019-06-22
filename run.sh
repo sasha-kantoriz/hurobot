@@ -1,5 +1,6 @@
 docker run -d --name hubot \
 	--restart always -it -u root \
+	-v /mnt/d-usb/data/local/media/youtube-dl/audios:/music \
 	-v `pwd`/scripts:/scripts \
 	-v `pwd`/hubot_scripts:/hubot/scripts \
         -v `pwd`/cron-dev:/etc/cron.d/cron-dev \
@@ -10,6 +11,7 @@ docker run -d --name hubot \
 	--device=/dev/vcsm \
 	--device=/dev/vchiq \
 	--device /dev/gpiomem \
+	--device /dev/snd \
         -p '127.0.0.1:8888:8888' \
 	-e TZ=Europe/Kiev \
 	-e HUBOT_SLACK_TOKEN=$SLACK_TOKEN \
