@@ -1,3 +1,25 @@
+# Description:
+#   Attempt to control the growing process
+#
+# Commands:
+#   do <on,off,check> <device> - Switch the devices under control (e.g. lights, coolers)
+#
+#   screenshot - Grab a photo of inside view
+#
+#   list crons - Print out list of crontab actions
+#
+#   enable <device> - Enable timed controling of device via crontab
+#
+#   disable <device> - Disable timed controling of device via crontab
+#
+#   play - Start audio player
+#
+#   mute - Mute audio player
+#
+# Author:
+#   hts
+
+
 fs = require("fs")
 request = require("request")
 
