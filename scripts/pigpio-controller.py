@@ -12,15 +12,15 @@ def slack_notify(client, text, channel='#services', user=None):
       user=user
     )
 
-# GPIO logic
-def check(pi, pin): return pi.read(pin)
+# GPIO logic via Normaly Closed relay contact
+def check(pi, pin): return int(not pi.read(pin))
 
 def on(pi, pin):
-    pi.write(pin, 1)
+    pi.write(pin, 0)
     return 1
 
 def off(pi, pin):
-    pi.write(pin, 0)
+    pi.write(pin, 1)
     return 0
 
 def switch(pi, pin, to_state=None):
