@@ -2,19 +2,21 @@
 #   Attempt to control the growing process
 #
 # Commands:
-#   do <on,off,check> <device> - Switch the devices under control (e.g. lights, coolers)
+#   hurogun do <on,off,check> <device> - Switch the devices under control (e.g. lights, coolers)
 #
-#   screenshot - Grab a photo of inside view
+#   hurogun screenshot - Grab a photo of inside view
 #
-#   list crons - Print out list of crontab actions
+#   hurogun list crons - Print out list of crontab actions
 #
-#   enable <device> - Enable timed controling of device via crontab
+#   hurogun enable <device> - Enable timed controling of device via crontab
 #
-#   disable <device> - Disable timed controling of device via crontab
+#   hurogun disable <device> - Disable timed controling of device via crontab
 #
-#   play - Start audio player
+#   hurogun download <url> - Download and add to tracklist audio or whole playlist by Youtube link
 #
-#   mute - Mute audio player
+#   hurogun play - Start audio player
+#
+#   hurogun mute - Mute audio player
 #
 # Author:
 #   hts
@@ -50,14 +52,17 @@ module.exports = (robot) ->
     child_process.exec "/scripts/timer-manager.sh disable #{device}", (error, stdout, stderr) ->
       res.send("disabled #{device}\n#{stdout} #{stderr}")
 
-  robot.respond /play (.*)/, (msg) ->
-    path = if msg.match[1] then msg.match[1] else '/music'
-    #path = msg.match[1]
-    child_process.exec "(play -q /music/*.mp3", (error, stdout, stderr) ->
+  robot.respond /download (.*)/, (res) ->
+    youtube_url = res.match[1]
+    child_process.exec "python3 /scripts/listen_that.py download #{youtube_url}", (error, stdout, stderr) ->
+      res.send("added to music library #{youtube_url}\n#{stdout}\n#{stderr}")
+
+  robot.respond /play/, (msg) ->
+    child_process.exec "python3 /scripts/listen_that.py &> /dev/null", (error, stdout, stderr) ->
       msg.send("started music player at path #{path}\n#{stdout}\n#{stderr}")
 
   robot.respond /mute/, (msg) ->
     child_process.exec "killall play", (error, stdout, stderr) ->
-      msg.send("mute music player\n#{stdout}\n#{stderr}")
+      msg.send("muted music player\n#{stdout}\n#{stderr}")
 
 
