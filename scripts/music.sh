@@ -17,10 +17,9 @@ case $1 in
 		done
 	;;
 	play)
-		bash -i -c "(play -q `ls $music_folder_path/*.mp3 | sort -R`) &"
-	;;
-	*)
-		bash -i -c "(play -q `ls $music_folder_path/*.mp3 | sort -R`) &"
+		for track in `ls $music_folder_path/*.mp3 | sort -R`; do
+			play $track
+		done
 	;;
 esac
 
