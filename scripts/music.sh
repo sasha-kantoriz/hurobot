@@ -18,7 +18,7 @@ case $1 in
 	;;
 	play)
 		for track in `ls $music_folder_path/*.mp3 | sort -R`; do
-			play $track
+			play $track;
 		done
 	;;
 esac
