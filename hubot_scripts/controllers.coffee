@@ -16,7 +16,9 @@
 #
 #   hurogun play - Start audio player
 #
-#   hurogun mute - Mute audio player
+#   hurogun next - Play next audio
+#
+#   hurogun silent - Mute audio player
 #
 # Author:
 #   hts
@@ -61,12 +63,11 @@ module.exports = (robot) ->
     child_process.exec "python3 /scripts/listen_that.py &> /dev/null", (error, stdout, stderr) ->
       msg.send("started music player at path #{path}\n#{stdout}\n#{stderr}")
 
-  robot.respond /next audio/, (msg) ->
-    child_process.exec "killall play", (error, stdout, stderr) ->
-      msg.send("skipped current audio #{stdout}\n#{stderr}")
+  robot.respond /next/, (msg) ->
+    child_process.exec "/scripts/music.sh next", (error, stdout, stderr) ->
+      msg.send("playing next audio")
 
-  robot.respond /mute/, (msg) ->
-    child_process.exec "pkill -f '/bin/bash /scripts/music.sh play'; pkill -f 'python3 /scripts/listen_that.py'; killall play", (error, stdout, stderr) ->
-      msg.send("muted music player\n#{stdout}\n#{stderr}")
-
+  robot.respond /silent/, (msg) ->
+    child_process.exec "/scripts/music.sh mute", (error, stdout, stderr) ->
+      msg.send("stopped audio player")
 

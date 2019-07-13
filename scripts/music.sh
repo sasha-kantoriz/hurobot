@@ -18,8 +18,17 @@ case $1 in
 	;;
 	play)
 		for track in `ls $music_folder_path/*.mp3 | sort -R`; do
+			echo $track > /music/current;
 			play $track;
 		done
+	;;
+	next)
+		pkill -f "play `cat /music/current`"
+	;;
+	mute)
+		pkill -f '/bin/bash /scripts/music.sh play'
+		pkill -f 'python3 /scripts/listen_that.py'
+		killall play
 	;;
 esac
 

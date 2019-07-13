@@ -4,6 +4,6 @@
 50 20 * * * root bash -c 'BASH_ENV=/etc/.environment /usr/bin/python3 /scripts/pigpio-controller.py off coolers >> /var/log/pigpio-controler.log'
 
 40 9 * * * root bash -c '/usr/bin/python3 /scripts/listen_that.py >> /var/log/hubot-music.log'
-0 21 * * * root bash -c 'pkill -f '/bin/bash /scripts/music.sh play'; pkill -f 'python3 /scripts/listen_that.py'; killall play >> /var/log/hubot-music.log'
+0 21 * * * root bash -c "pkill -f '/bin/bash /scripts/music.sh play'; pkill -f 'python3 /scripts/listen_that.py'; killall play >> /var/log/hubot-music.log"
 
 
